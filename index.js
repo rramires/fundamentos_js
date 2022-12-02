@@ -41,6 +41,7 @@ console.log('Outra coisa leve...');
 // *** Usar o fs com promises
 const fs2 = require('fs').promises;
 // 1 - eventLoop abre uma thread
+/*
 fs2.writeFile('teste.txt', 'Primeiro texto...\n')
     .then(() => {
         // 3 - thread avisa/responde o eventLoop que acabou a thread do writeFile
@@ -58,4 +59,24 @@ fs2.writeFile('teste.txt', 'Primeiro texto...\n')
     });
 // 2 - eventLoop livre processa outra coisa
 console.log('Outra coisa leve 2...');
+*/
 
+
+/**
+ * Melhorando com async await
+ * *** Apenas sintax sugar 
+ * internamente o node continua usando promises
+ */
+ const fs3 = require('fs').promises;
+// para funcionar o await tem que estar dentro de uma funcao async
+async function funcaoAsync(){
+    // await aguarda concluir para ir para a proxima linha
+    await fs3.writeFile('teste.txt', 'Primeira linha...\n');
+    console.log('Gravado: ');
+    await fs3.appendFile('teste.txt', 'Segunda linha!');
+    console.log('Atualizado: ');
+}
+// chame a funcao
+funcaoAsync();
+// eventLoop livre processa outra coisa
+console.log('Outra coisa leve 3...');
