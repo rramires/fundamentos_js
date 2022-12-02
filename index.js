@@ -70,11 +70,18 @@ console.log('Outra coisa leve 2...');
  const fs3 = require('fs').promises;
 // para funcionar o await tem que estar dentro de uma funcao async
 async function funcaoAsync(){
-    // await aguarda concluir para ir para a proxima linha
-    await fs3.writeFile('teste.txt', 'Primeira linha...\n');
-    console.log('Gravado: ');
-    await fs3.appendFile('teste.txt', 'Segunda linha!');
-    console.log('Atualizado: ');
+    // para capturar erros usar try catch
+    try{
+         // await aguarda concluir para ir para a proxima linha
+        await fs3.writeFile('teste.txt', 'Primeira linha...\n');
+        console.log('Gravado: ');
+        await fs3.appendFile('teste.txt', 'Segunda linha!');
+        console.log('Atualizado: ');
+    }
+    catch(err){
+        console.log(err);
+    }
+   
 }
 // chame a funcao
 funcaoAsync();
