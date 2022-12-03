@@ -6,9 +6,17 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>User: <%= users[0].name %> - Age: <%= users[0].age %></p>
-    <p>User: <%= users[1].name %> - Age: <%= users[1].age %></p>
-    <p>User: <%= users[2].name %> - Age: <%= users[2].age %></p>
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+        <% for(var i = 0; i< users.length; i++) {%>
+          <tr>
+            <td><%= users[i].name %></td>
+            <td><%= users[i].age %></td>
+          </tr>
+        <% } %>
+    </table>
   </body>
 </html>
