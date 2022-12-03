@@ -8,15 +8,18 @@
     <h1><%= title %></h1>
     <table>
         <tr>
+          <th>Category</th>
           <th>Product</th>
           <th>Price</th>
         </tr>
-        <% for(var i = 0; i< products.length; i++) {%>
+        <% for(var i = 0; i < products.length; i++) {%>
           <tr>
+            <td><%= products[i].category %></td>
             <td><%= products[i].name %></td>
             <td><%= products[i].price %></td>
           </tr>
         <% } %>
     </table>
+    <a href="/products/add">Add Product</a>
   </body>
 </html>
