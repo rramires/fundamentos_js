@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <table>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+        </tr>
+        <% for(var i = 0; i< products.length; i++) {%>
+          <tr>
+            <td><%= products[i].name %></td>
+            <td><%= products[i].price %></td>
+          </tr>
+        <% } %>
+    </table>
+  </body>
+</html>
