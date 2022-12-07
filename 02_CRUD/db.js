@@ -12,5 +12,14 @@ mongoClient.connect("mongodb://localhost:27017",
                             console.log('MongoDB connected!');
                         }
                     });
+
+
+function findCustomers(){
+    //
+    return global.dbconn
+                 .collection('customers')
+                 .find({})
+                 .toArray();
+}
 //
-module.exports = {};
+module.exports = { findCustomers };

@@ -4,7 +4,15 @@ const db = require('../db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  // 
+  const custumers = db.findCustomers()
+                      .then(customers => {
+                        //
+                        console.log(customers);
+                        //
+                        res.render('index', { title: 'Express' });
+                      })
+                      .catch(error => console.log(error));
 });
 
 module.exports = router;
