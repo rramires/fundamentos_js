@@ -1,4 +1,6 @@
 const mongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
+
 mongoClient.connect("mongodb://localhost:27017", 
                     { useUnifiedTopology: true })
                     .then(connection => {
@@ -16,5 +18,35 @@ function findCustomers(){
                  .find({})
                  .toArray();
 }
+
+
+function insertCostumer(customer){
+    //
+    return global.dbconn
+                 .collection('customers')
+                 .insertOne(customer);
+}
+
+
+function updateCostumer(id, customer){
+    const objId = new ObjectId(id)
+    //
+    return global.dbconn
+                 .collection('customers')
+                 .updateOne({_id: objId}, {$set: customer});
+}
+
+
+function deleteCostumer(id){
+    const objId = new ObjectId(id)
+    //
+    return global.dbconn
+                 .collection('customers')
+                 .deleteOne({_id: objId});
+}
+
 //
-module.exports = { findCustomers };
+module.exports = { findCustomers,
+                   insertCostumer,
+                   updateCostumer,
+                   deleteCostumer };
