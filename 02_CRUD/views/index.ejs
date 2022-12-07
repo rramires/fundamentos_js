@@ -7,12 +7,13 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %> CRUD</p>
-
     <table>
       <thead>
         <tr>
           <td>Name</td>
           <td>Age</td>
+          <td>State</td>
+          <td>Action</td>
         </tr>
       </thead>
       <tbody>
@@ -20,12 +21,14 @@
           <tr>
               <td><%= item.name %></td>
               <td><%= item.age %></td>
+              <td><%= item.state %></td>
+              <td>X</td>
           </tr>
         <% }) %>
       </tbody>
       <tfoot>
         <tr>
-          <td><%= customers.length %> clientes cadastrados!</td>
+          <td colspan="4"><%= customers.length %> customers found</td>
         </tr>
       </tfoot>
     </table>
