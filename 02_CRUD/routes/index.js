@@ -7,9 +7,7 @@ router.get('/', function(req, res, next) {
   // 
   const custumers = db.findCustomers()
                       .then(customers => {
-                        //
-                        console.log(customers);
-                        //
+                        // console.log(customers);
                         res.render('index', { title: 'Express', customers });
                       })
                       .catch(error => console.log(error));

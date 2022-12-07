@@ -6,16 +6,28 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <ul>
-      <% customers.forEach(item => { %>
-          <li>
-            <%= item.name %> - Age: <%= item.age %>
-          </li>
-      <% }) %>
-    </ul>
-    <p>
-      <%= customers.length %> clientes cadastrados!
-    </p>
+    <p>Welcome to <%= title %> CRUD</p>
+
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Age</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.forEach(item => { %>
+          <tr>
+              <td><%= item.name %></td>
+              <td><%= item.age %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><%= customers.length %> clientes cadastrados!</td>
+        </tr>
+      </tfoot>
+    </table>
   </body>
 </html>
