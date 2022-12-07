@@ -7,5 +7,15 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <ul>
+      <% customers.forEach(item => { %>
+          <li>
+            <%= item.name %> - Age: <%= item.age %>
+          </li>
+      <% }) %>
+    </ul>
+    <p>
+      <%= customers.length %> clientes cadastrados!
+    </p>
   </body>
 </html>
