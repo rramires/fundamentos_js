@@ -6,7 +6,7 @@
     <body>
         <h1><%= title %></h1>
         <p>Customer Registration</p>
-        <form action="">
+        <form action="/new" method="POST">
             <fieldset>
                 <legend>Data</legend>
                 <p>
@@ -17,6 +17,7 @@
                 </p>
                 <p>
                     State: <select name="state">
+                               <option>Select state:</option>
                                <option>PR</option>
                                <option>SC</option>
                                <option>RS</option>
@@ -28,5 +29,12 @@
                 </p>
             </fieldset>
         </form>
+        <script>
+            // pega o erro da URL
+            if(window.location.search){
+                const error = window.location.search.split('=')[1];
+                alert(decodeURI(error));
+            }
+        </script>
     </body>
 </html>
