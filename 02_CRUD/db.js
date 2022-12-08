@@ -11,6 +11,15 @@ mongoClient.connect("mongodb://localhost:27017",
                     .catch(error => console.log(error));
 
 
+function findCustomer(id){
+    const objId = new ObjectId(id)
+    //
+    return global.dbconn
+                 .collection('customers')
+                 .findOne({ _id: objId });
+}
+
+
 function findCustomers(){
     //
     return global.dbconn
@@ -46,7 +55,8 @@ function deleteCostumer(id){
 }
 
 //
-module.exports = { findCustomers,
+module.exports = { findCustomer,
+                   findCustomers,
                    insertCostumer,
                    updateCostumer,
                    deleteCostumer };

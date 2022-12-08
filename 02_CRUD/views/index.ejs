@@ -18,11 +18,15 @@
       </thead>
       <tbody>
         <% customers.forEach(item => { %>
-          <tr>
-              <td><%= item.name %></td>
+          <tr align="center">
+              <td align="left"><%= item.name %></td>
               <td><%= item.age %></td>
               <td><%= item.state %></td>
-              <td>X</td>
+              <td>
+                <a href="/edit/<%= item._id %>">
+                  <img width="16" height="16" src="/images/edit_icon.png" />
+                </a>
+              </td>
           </tr>
         <% }) %>
       </tbody>
