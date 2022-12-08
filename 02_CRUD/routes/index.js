@@ -13,4 +13,10 @@ router.get('/', function(req, res, next) {
                       .catch(error => console.log(error));
 });
 
+/* GET home page. */
+router.get('/new', function(req, res, next) {
+  // 
+  res.render('customer', { title: "Customer Registration" });
+});
+
 module.exports = router;

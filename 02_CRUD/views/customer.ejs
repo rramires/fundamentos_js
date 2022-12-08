@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        <p>Customer Registration</p>
+        <form action="">
+            <fieldset>
+                <legend>Data</legend>
+                <p>
+                    Name: <input type="text" name="name" />
+                </p>
+                <p>
+                    Age: <input type="number" name="age" min="1" max="150" />
+                </p>
+                <p>
+                    State: <select name="state">
+                               <option>PR</option>
+                               <option>SC</option>
+                               <option>RS</option>
+                           </select>
+                </p>
+                <p>
+                    <input type="submit" value="Save" />
+                    <a href="/">Cancelar</a>
+                </p>
+            </fieldset>
+        </form>
+    </body>
+</html>
