@@ -29,7 +29,7 @@ function findCustomers(){
 }
 
 
-function insertCostumer(customer){
+function insertCustomer(customer){
     //
     return global.dbconn
                  .collection('customers')
@@ -37,7 +37,7 @@ function insertCostumer(customer){
 }
 
 
-function updateCostumer(id, customer){
+function updateCustomer(id, customer){
     const objId = new ObjectId(id)
     //
     return global.dbconn
@@ -46,7 +46,7 @@ function updateCostumer(id, customer){
 }
 
 
-function deleteCostumer(id){
+function deleteCustomer(id){
     const objId = new ObjectId(id)
     //
     return global.dbconn
@@ -57,6 +57,6 @@ function deleteCostumer(id){
 //
 module.exports = { findCustomer,
                    findCustomers,
-                   insertCostumer,
-                   updateCostumer,
-                   deleteCostumer };
+                   insertCustomer,
+                   updateCustomer,
+                   deleteCustomer };

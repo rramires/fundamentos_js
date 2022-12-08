@@ -26,6 +26,10 @@
                 <a href="/edit/<%= item._id %>">
                   <img width="16" height="16" src="/images/edit_icon.png" />
                 </a>
+                <a href="/delete/<%= item._id %>"
+                   onclick="return confirm('Do you really want to delete the customer <%= item.name %> ?')">
+                  <img width="16" height="16" src="/images/delete_icon.png" />
+                </a>
               </td>
           </tr>
         <% }) %>

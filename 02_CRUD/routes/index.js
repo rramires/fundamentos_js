@@ -35,6 +35,19 @@ router.get('/edit/:customerId', function(req, res, next) {
 });
 
 
+/* GET delete customer. */
+router.get('/delete/:customerId', function(req, res, next) {
+  //
+  const id = req.params.customerId;
+  // get costumer
+  db.deleteCustomer(id)
+    .then(result => {
+      res.redirect("/");
+    })
+    .catch(error => console.log(error));
+});
+
+
 
 /* POST subimited data. */
 router.post('/new', function(req, res, next) {
@@ -50,8 +63,8 @@ router.post('/new', function(req, res, next) {
   //
   const customer = { name, age, state };
   // create promise for insert or update
-  const promise = id ? db.updateCostumer(id, customer)
-                     : db.insertCostumer(customer);
+  const promise = id ? db.updateCustomer(id, customer)
+                     : db.insertCustomer(customer);
 
   // process promise result
   promise.then(result => {
