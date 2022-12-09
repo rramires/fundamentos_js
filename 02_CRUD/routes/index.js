@@ -8,10 +8,13 @@ router.get('/', function(req, res, next) {
   // 
   db.findCustomers()
     .then(customers => {
-      // console.log(customers);
+      // console.log(customers);Listar clientes não é possível
       res.render('index', { title: 'Express', customers });
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      res.render("error", { message: "Unable to list customers",  error });
+    });
 });
 
 
@@ -31,7 +34,10 @@ router.get('/edit/:customerId', function(req, res, next) {
     .then(customer => {
       res.render('customer', { title: 'Customer Edit', customer });
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      res.render("error", { message: "Unable to list customer data",  error });
+    });
 });
 
 
@@ -44,7 +50,10 @@ router.get('/delete/:customerId', function(req, res, next) {
     .then(result => {
       res.redirect("/");
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      res.render("error", { message: "Unable to delete customer",  error });
+    });
 });
 
 
@@ -71,7 +80,10 @@ router.post('/new', function(req, res, next) {
               // 
               res.redirect('/');
           })
-          .catch(error => console.log(error));
+          .catch(error => {
+            console.log(error);
+            res.render("error", { message: "Unable to save customer",  error });
+          });
 });
 
   

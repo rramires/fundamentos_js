@@ -1,14 +1,25 @@
 const mongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
 
-mongoClient.connect(process.env.MONGODB_CONNECTION, 
-                    { useUnifiedTopology: true })
-                    .then(connection => {
-                        // senao seta como global e seleciona o banco
-                        global.dbconn = connection.db('crud');
-                        console.log('MongoDB connected!');
-                    })
-                    .catch(error => console.log(error));
+
+function connectDB(){
+    //
+    if(!global.dbconn){
+        mongoClient.connect(process.env.MONGODB_CONNECTION, 
+            { useUnifiedTopology: true })
+            .then(connection => {
+                // senao seta como global e seleciona o banco
+                global.dbconn = connection.db('crud');
+                console.log('MongoDB connected!');
+            })
+            .catch(error => {
+                console.log(error);
+                global.dbconn = null;
+        });
+    }
+}
+connectDB();
+
 
 
 function findCustomer(id){
