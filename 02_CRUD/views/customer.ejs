@@ -15,11 +15,8 @@
                     Age: <input type="number" name="age" min="1" max="150" value="<%= customer.age %>"/>
                 </p>
                 <p>
-                    State: <select id="uf" name="state">
+                    State: <select id="uf" name="state" />
                                <option>Select state:</option>
-                               <option>PR</option>
-                               <option>SC</option>
-                               <option>RS</option>
                            </select>
                 </p>
                 <input type="hidden" name="id" value="<%= customer._id %>" />
@@ -30,17 +27,29 @@
             </fieldset>
         </form>
         <script>
+            // carrega API UFs
+            fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome")
+                 .then(response => response.json())
+                 .then(json => {
+                    // get select
+                    const ufSelect = document.getElementById("uf");
+                    //
+                    json.forEach(item => {
+                        // create option
+                        const opt = document.createElement("option");
+                              opt.innerText = item.sigla;
+                        ufSelect.add(opt);
+                    });
+                    // seta o estado
+                    ufSelect.value = "<%= customer.state %>"
+                 })
+                 .catch(error => alert(error));
+
             // pega o erro da URL
             if(window.location.search){
                 const error = window.location.search.split('=')[1];
                 alert(decodeURI(error));
             }
-
-            // seta o estado
-            <% if(customer.state) { %>
-                document.getElementById("uf").value = "<%= customer.state %>"
-            <% } %>
-
         </script>
     </body>
 </html>
