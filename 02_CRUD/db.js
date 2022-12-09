@@ -1,7 +1,7 @@
 const mongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
 
-mongoClient.connect("mongodb://localhost:27017", 
+mongoClient.connect(process.env.MONGODB_CONNECTION, 
                     { useUnifiedTopology: true })
                     .then(connection => {
                         // senao seta como global e seleciona o banco
