@@ -1,6 +1,6 @@
 const { v4 } = require('uuid');
 
-// global mook data
+// Global Mock data
 global.users = [];
 
 
@@ -9,6 +9,8 @@ function insertUser(user){
     user.id = v4();
     //
     global.users.push(user);
+    //
+    return user;
 }
 
 
@@ -27,9 +29,11 @@ function updateUser(id, user){
         if(item.id == id){
             user.id = id;
             array[index] = user;
+            //
             return;
         }
     });
+    return user;
 }
 
 
@@ -37,10 +41,13 @@ function deleteUser(id){
     global.users.forEach((item, index, array) => {
         if(item.id == id){
             array.splice(index, 1);
+            //
             return;
         }
     });
+    return id;
 }
+
 
 module.exports = { insertUser, 
                    findUsers,
