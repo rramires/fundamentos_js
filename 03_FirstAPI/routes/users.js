@@ -36,9 +36,22 @@ router.post('/', function(req, res, next) {
 
 
 /**
- * PUT - Update User
+ * PUT - Replace User
  */
 router.put('/:id', function(req, res, next) {
+  // get Id param
+  const id = req.params.id;
+  // update
+  const user = db.updateUser(id, req.body, true);
+  // response code + user
+  res.status(200).json(user);
+});
+
+
+/**
+ * PATCH - update User
+ */
+router.patch('/:id', function(req, res, next) {
   // get Id param
   const id = req.params.id;
   // update
@@ -49,7 +62,7 @@ router.put('/:id', function(req, res, next) {
 
 
 /**
- * PUT - Update User
+ * DELETE - Update User
  */
 router.delete('/:id', function(req, res, next) {
   // get Id param

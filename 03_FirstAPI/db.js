@@ -41,7 +41,7 @@ function findUser(id){
 }
 
 
-function updateUser(id, user){
+function updateUser(id, user, overwrite){
     // get users
     const users = findUsers();
     // 
@@ -50,16 +50,26 @@ function updateUser(id, user){
 
     // if not exists
     if(index === -1){
-        return {}
+        return {};
     }
 
-    // update
-    users[index] = user;
-   
+    //
+    if(overwrite){
+        // update/replace entire object
+        user.id = id;
+        users[index] = user; 
+    }
+    else{
+        // update only modified properties
+        for(let key in user){
+            users[index][key] = user[key];
+        }
+    }
+
     // write to filesystem
     fs.writeFileSync(FILE_PATH, JSON.stringify(users));
     //
-    return user;
+    return users[index];
 }
 
 
