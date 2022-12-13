@@ -3,17 +3,19 @@ const fs = require('fs');
 
 // File System Mock data
 const FILE_NAME = "users.json"
-const FILE_REL = "./" + FILE_NAME;
+// const FILE_REL = "./" + FILE_NAME;
 const FILE_PATH = require("path").join(__dirname, FILE_NAME);
 
 
 function findUsers(){
-    try{
-        return require(FILE_REL);
-    }
-    catch(err){
+    // check
+    if(!fs.existsSync(FILE_PATH)){
         return [];
     }
+    // get raw
+    const rawData = fs.readFileSync(FILE_PATH);
+    // convert to JSON
+    return JSON.parse(rawData);
 }
 
 
