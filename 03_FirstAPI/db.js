@@ -44,15 +44,18 @@ function findUser(id){
 function updateUser(id, user){
     // get users
     const users = findUsers();
-    //
-    users.forEach((item, index, array) => {
-        if(item.id == id){
-            user.id = id;
-            array[index] = user;
-            //
-            return;
-        }
-    });
+    // 
+    // get item index
+    const index = users.findIndex(item => item.id === id);
+
+    // if not exists
+    if(index === -1){
+        return {}
+    }
+
+    // update
+    users[index] = user;
+   
     // write to filesystem
     fs.writeFileSync(FILE_PATH, JSON.stringify(users));
     //
