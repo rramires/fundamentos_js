@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 //
-const db = require('../db'); 
+const db = require('../models/db'); 
+//
+const userSchema = require('../models/userSchema');
 
 
 /**
@@ -28,8 +30,18 @@ router.get('/:id', function(req, res, next) {
  * POST - Insert NEW user. 
  */
 router.post('/', function(req, res, next) {
+  // get user
+  let user = req.body;
+
+  // validate
+  const { error } = userSchema.validate(user);
+  if(error){
+    // 422 = Unprocessable Entity
+    return res.status(422).json({ error: error.details }); 
+  }
+
   // insert
-  const user = db.insertUser(req.body);
+  user = db.insertUser(user);
   // response code + inserted user with ID
   res.status(201).json(user);
 });
