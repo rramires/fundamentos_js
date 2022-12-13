@@ -1,31 +1,49 @@
 const { v4 } = require('uuid');
+const fs = require('fs');
 
-// Global Mock data
-global.users = [];
+// File System Mock data
+const FILE_NAME = "users.json"
+const FILE_REL = "./" + FILE_NAME;
+const FILE_PATH = require("path").join(__dirname, FILE_NAME);
+
+
+function findUsers(){
+    try{
+        return require(FILE_REL);
+    }
+    catch(err){
+        return [];
+    }
+}
 
 
 function insertUser(user){
+    // get users
+    const users = findUsers();
     // generate ID
     user.id = v4();
     //
-    global.users.push(user);
+    users.push(user);
+    // write to filesystem
+    fs.writeFileSync(FILE_PATH, JSON.stringify(users));
     //
     return user;
 }
 
 
-function findUsers(){
-    return global.users;
-}
-
-
 function findUser(id){
-    return global.users.find(item => item.id === id);
+    // get users
+    const users = findUsers();
+    //
+    return users.find(item => item.id === id);
 }
 
 
 function updateUser(id, user){
-    global.users.forEach((item, index, array) => {
+    // get users
+    const users = findUsers();
+    //
+    users.forEach((item, index, array) => {
         if(item.id == id){
             user.id = id;
             array[index] = user;
@@ -33,18 +51,27 @@ function updateUser(id, user){
             return;
         }
     });
+    // write to filesystem
+    fs.writeFileSync(FILE_PATH, JSON.stringify(users));
+    //
     return user;
 }
 
 
 function deleteUser(id){
-    global.users.forEach((item, index, array) => {
+    // get users
+    const users = findUsers();
+    //
+    users.forEach((item, index, array) => {
         if(item.id == id){
             array.splice(index, 1);
             //
             return;
         }
     });
+    // write to filesystem
+    fs.writeFileSync(FILE_PATH, JSON.stringify(users));
+    //
     return id;
 }
 

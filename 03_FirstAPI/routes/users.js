@@ -14,6 +14,17 @@ router.get('/', function(req, res, next) {
 
 
 /**
+ * GET user 
+ */
+router.get('/:id', function(req, res, next) {
+  // get Id param
+  const id = req.params.id;
+  // get one
+  res.json(db.findUser(id));
+});
+
+
+/**
  * POST - Insert NEW user. 
  */
 router.post('/', function(req, res, next) {
