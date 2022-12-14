@@ -9,7 +9,7 @@ const userSchema = require('../models/userSchema');
 /**
  * GET users listing. 
  */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   // get all
   res.json(db.findUsers());
 });
@@ -27,19 +27,28 @@ router.get('/:id', function(req, res, next) {
 
 
 /**
- * POST - Insert NEW user. 
+ * Validation Middleware
  */
-router.post('/', function(req, res, next) {
-  // get user
-  let user = req.body;
-
+function schemaValidator(req, res, next) {
   // validate
-  const { error } = userSchema.validate(user);
+  const { error } = userSchema.validate(req.body);
   if(error){
     // 422 = Unprocessable Entity
     return res.status(422).json({ error: error.details }); 
   }
+  else{
+    // call next middleware
+    next();
+  }
+}
 
+
+/**
+ * POST - Insert NEW user. 
+ */
+router.post('/', schemaValidator, (req, res, next) => {
+  // get user
+  let user = req.body;
   // insert
   user = db.insertUser(user);
   // response code + inserted user with ID
@@ -50,7 +59,7 @@ router.post('/', function(req, res, next) {
 /**
  * PUT - Replace User
  */
-router.put('/:id', function(req, res, next) {
+router.put('/:id', schemaValidator, (req, res, next) => {
   // get Id param
   const id = req.params.id;
   // update
@@ -63,7 +72,7 @@ router.put('/:id', function(req, res, next) {
 /**
  * PATCH - update User
  */
-router.patch('/:id', function(req, res, next) {
+router.patch('/:id', (req, res, next) => {
   // get Id param
   const id = req.params.id;
   // update
@@ -76,7 +85,7 @@ router.patch('/:id', function(req, res, next) {
 /**
  * DELETE - Update User
  */
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', (req, res, next) => {
   // get Id param
   const id = req.params.id;
   // delete

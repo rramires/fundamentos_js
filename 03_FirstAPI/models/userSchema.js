@@ -11,7 +11,7 @@ module.exports = Joi.object({
               .integer()
               .min(18)
               .max(150)
-              .required(),
+              .required(false),
 
     email: Joi.string()
               /* 
