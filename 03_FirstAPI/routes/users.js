@@ -4,6 +4,7 @@ const router = express.Router();
 const db = require('../models/db'); 
 //
 const userSchema = require('../models/userSchema');
+const { schemaValidator } = require('../middlewars/validationMiddleware');
 
 
 /**
@@ -24,23 +25,6 @@ router.get('/:id', function(req, res, next) {
   // get one
   res.json(db.findUser(id));
 });
-
-
-/**
- * Validation Middleware
- */
-function schemaValidator(req, res, next) {
-  // validate
-  const { error } = userSchema.validate(req.body);
-  if(error){
-    // 422 = Unprocessable Entity
-    return res.status(422).json({ error: error.details }); 
-  }
-  else{
-    // call next middleware
-    next();
-  }
-}
 
 
 /**
