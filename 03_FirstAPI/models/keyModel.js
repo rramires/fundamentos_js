@@ -72,6 +72,7 @@ function deleteKey(key){
 
 
 module.exports = { createKey,
+                   findKeys,
                    findKey,
                    checkActiveKey,
                    deleteKey };

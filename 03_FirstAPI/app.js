@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const keysRouter = require('./routes/keys');
 
 //
 const { authenticate } = require('./middlewars/authenticationMiddleware');
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 */
 app.use('/', indexRouter);
 app.use('/users', authenticate, usersRouter);
+app.use('/keys', keysRouter);
 
 
 // catch 404 and forward to error handler
