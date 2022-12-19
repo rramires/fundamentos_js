@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 //
-const db = require('../models/db'); 
+const userModel = require('../models/userModel'); 
 //
 const { schemaValidator } = require('../middlewars/validationMiddleware');
 
@@ -11,7 +11,7 @@ const { schemaValidator } = require('../middlewars/validationMiddleware');
  */
 router.get('/', (req, res, next) => {
   // get all
-  res.json(db.findUsers());
+  res.json(userModel.findUsers());
 });
 
 
@@ -22,7 +22,7 @@ router.get('/:id', function(req, res, next) {
   // get Id param
   const id = req.params.id;
   // get one
-  res.json(db.findUser(id));
+  res.json(userModel.findUser(id));
 });
 
 
@@ -33,7 +33,7 @@ router.post('/', schemaValidator, (req, res, next) => {
   // get user
   let user = req.body;
   // insert
-  user = db.insertUser(user);
+  user = userModel.insertUser(user);
   // response code + inserted user with ID
   res.status(201).json(user);
 });
@@ -46,7 +46,7 @@ router.put('/:id', schemaValidator, (req, res, next) => {
   // get Id param
   const id = req.params.id;
   // update
-  const user = db.updateUser(id, req.body, true);
+  const user = userModel.updateUser(id, req.body, true);
   // response code + user
   res.status(200).json(user);
 });
@@ -59,7 +59,7 @@ router.patch('/:id', (req, res, next) => {
   // get Id param
   const id = req.params.id;
   // update
-  const user = db.updateUser(id, req.body);
+  const user = userModel.updateUser(id, req.body);
   // response code + user
   res.status(200).json(user);
 });
@@ -72,7 +72,7 @@ router.delete('/:id', (req, res, next) => {
   // get Id param
   const id = req.params.id;
   // delete
-  const idret = db.deleteUser(id);
+  const idret = userModel.deleteUser(id);
   // response code + deleted user id
   res.status(200).json(idret);
 });
