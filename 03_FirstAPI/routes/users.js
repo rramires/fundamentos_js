@@ -3,7 +3,6 @@ const router = express.Router();
 //
 const db = require('../models/db'); 
 //
-const userSchema = require('../models/userSchema');
 const { schemaValidator } = require('../middlewars/validationMiddleware');
 
 
