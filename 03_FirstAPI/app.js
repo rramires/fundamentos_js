@@ -1,12 +1,12 @@
 const express = require('express');
 const logger = require('morgan');
-
+//
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const keysRouter = require('./routes/keys');
 
 //
-const { authenticate } = require('./middlewars/authenticationMiddleware');
+const { authenticate } = require('./middlewares/authenticationMiddleware');
 
 const app = express();
 

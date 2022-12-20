@@ -1,81 +1,45 @@
 const express = require('express');
 const router = express.Router();
 //
-const userModel = require('../models/userModel'); 
+const { schemaValidator } = require('../middlewares/validationMiddleware');
 //
-const { schemaValidator } = require('../middlewars/validationMiddleware');
+const userController = require('../controllers/userController');
 
 
 /**
  * GET users listing. 
  */
-router.get('/', (req, res, next) => {
-  // get all
-  res.json(userModel.findUsers());
-});
+router.get('/', userController.getUsers);
 
 
 /**
  * GET user 
  */
-router.get('/:id', function(req, res, next) {
-  // get Id param
-  const id = req.params.id;
-  // get one
-  res.json(userModel.findUser(id));
-});
+router.get('/:id', userController.getUser);
 
 
 /**
  * POST - Insert NEW user. 
  */
-router.post('/', schemaValidator, (req, res, next) => {
-  // get user
-  let user = req.body;
-  // insert
-  user = userModel.insertUser(user);
-  // response code + inserted user with ID
-  res.status(201).json(user);
-});
+router.post('/', schemaValidator, userController.insertUser);
 
 
 /**
  * PUT - Replace User
  */
-router.put('/:id', schemaValidator, (req, res, next) => {
-  // get Id param
-  const id = req.params.id;
-  // update
-  const user = userModel.updateUser(id, req.body, true);
-  // response code + user
-  res.status(200).json(user);
-});
+router.put('/:id', schemaValidator, userController.replaceUser);
 
 
 /**
  * PATCH - update User
  */
-router.patch('/:id', (req, res, next) => {
-  // get Id param
-  const id = req.params.id;
-  // update
-  const user = userModel.updateUser(id, req.body);
-  // response code + user
-  res.status(200).json(user);
-});
+router.patch('/:id', userController.updateUser);
 
 
 /**
- * DELETE - Update User
+ * DELETE - Delete User
  */
-router.delete('/:id', (req, res, next) => {
-  // get Id param
-  const id = req.params.id;
-  // delete
-  const idret = userModel.deleteUser(id);
-  // response code + deleted user id
-  res.status(200).json(idret);
-});
+router.delete('/:id', userController.deleteUser);
 
 
 module.exports = router;
