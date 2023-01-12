@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <form action="/login">
+        <input name="username" type="text"><br />
+        <input name="password" type="password"><br />
+        <input type="submit" value="Login">
+    </form>
+    <!-- Error message -->
+    <% if(message){ %> 
+        <p>
+            <label style="color:red"><%= message %></label>
+        </p>
+    <% } %> 
+    <p>
+        <a href="/users/forgot">Esqueceu a sua senha?</a> | <a href="/users/signup">Não possui cadastro?</a>
+    </p>
+</body>
+</html>
