@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
@@ -7,6 +6,8 @@
 const app = require('../app');
 const debug = require('debug')('05-authpassport:server');
 const http = require('http');
+//
+const mongoClient = require('mongodb').MongoClient;
 
 /**
  * Get port from environment and store in Express.
@@ -25,9 +26,22 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+//
+mongoClient.connect(process.env.MONGODB_CONNECTION, (err, conn) => {
+  if(err){
+    console.error(err);
+  }
+  else{
+    // connect to database
+    global.db = conn.db(process.env.MONGO_DB);
+    console.log('MongoDB connected!');
+    // start app
+    server.listen(port);
+  }
+});
 
 /**
  * Normalize a port into a number, string, or false.
