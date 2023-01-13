@@ -30,7 +30,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 //
-mongoClient.connect(process.env.MONGODB_CONNECTION, (err, conn) => {
+mongoClient.connect(process.env.MONGODB_URL, (err, conn) => {
   if(err){
     console.error(err);
   }
