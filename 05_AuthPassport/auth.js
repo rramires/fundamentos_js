@@ -5,7 +5,8 @@ const LocalStrategy = require('passport-local').Strategy;
 
 
 module.exports = function(passport){
-
+    
+    console.log('Carregou auth.js');
     /**
      * Find user by username
      */
@@ -49,35 +50,39 @@ module.exports = function(passport){
     /**
      * Verify authentication
      */
-    passport.use( new LocalStrategy( {
-                        usernameField: "username",
-                        upasswordField: "password"
-                    },
-                    (username, password, done) => {
-                        // find user by username
-                        findUser(username, (err, user) => {
-                            // if error
-                            if(err) { 
-                                return done(err);
-                            }
-                            // if user inexists
-                            if(!user) { 
-                                return done(null, false);
-                            }
-                            // compare password
-                            bcrypt.compare(password. user.password, (err, isValid) => {
-                                // if error
-                                if(err) { 
-                                    return done(err);
-                                }
-                                // if invalid
-                                if(!isValid) { 
-                                    return done(null, false);
-                                }
-                                // if valid
-                                return done(null, user);
-                            });
-                        });
-                    } )
+    passport.use(new LocalStrategy(
+        {
+            usernameField: 'username',
+            passwordField: 'password'
+        },
+        (username, password, done) => {
+                //
+                console.log('Dentro do LocalStrategy:', username, password);
+                // find user by username
+                findUser(username, (err, user) => {
+                    // if error
+                    if(err) { 
+                        return done(err);
+                    }
+                    // if user inexists
+                    if(!user) { 
+                        return done(null, false);
+                    }
+                    // compare password
+                    bcrypt.compare(password. user.password, (err, isValid) => {
+                        // if error
+                        if(err) { 
+                            return done(err);
+                        }
+                        // if invalid
+                        if(!isValid) { 
+                            return done(null, false);
+                        }
+                        // if valid
+                        return done(null, user);
+                    });
+                });
+            } 
+        )
     );
 };
