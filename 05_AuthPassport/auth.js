@@ -5,8 +5,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 
 module.exports = function(passport){
-    
-    console.log('Carregou auth.js');
+
     /**
      * Find user by username
      */
@@ -56,8 +55,6 @@ module.exports = function(passport){
             passwordField: 'password'
         },
         (username, password, done) => {
-                //
-                console.log('Dentro do LocalStrategy:', username, password);
                 // find user by username
                 findUser(username, (err, user) => {
                     // if error
@@ -69,7 +66,7 @@ module.exports = function(passport){
                         return done(null, false);
                     }
                     // compare password
-                    bcrypt.compare(password. user.password, (err, isValid) => {
+                    bcrypt.compare(password, user.password, (err, isValid) => {
                         // if error
                         if(err) { 
                             return done(err);
@@ -81,7 +78,7 @@ module.exports = function(passport){
                         // if valid
                         return done(null, user);
                     });
-                });
+                }); 
             } 
         )
     );

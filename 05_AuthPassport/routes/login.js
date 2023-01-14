@@ -26,15 +26,12 @@ router.get('/login', function(req, res, next) {
 /**
  * POST Login credentials for authenticate
  */
-router.post('/login', function(req, res, next) {
-  //
-  console.log('POST em /login:', req.body.username, req.body.password);
-
-  passport.authenticate('local', {
-    successRedirect: '/index',
-    failureRedirect: '/login?fail=true'
-  });
-});
-
+router.post('/login',
+  // passport.authenticate is a middlewre
+  passport.authenticate('local', { 
+    successRedirect: '/index', 
+    failureRedirect: '/login?fail=true' 
+  })
+);
 
 module.exports = router;
