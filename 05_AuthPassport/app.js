@@ -25,6 +25,7 @@ require('./auth')(passport);
 app.use(session({
   store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URL, // Connection URL
+    dbName: process.env.MONGO_DB,
     ttl: process.env.EXPIRE_TIME * 60, // Expiration time
     autoRemove: 'native' // autoRemove defined in database
   }),
