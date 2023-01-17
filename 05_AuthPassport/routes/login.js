@@ -37,4 +37,20 @@ router.post('/login',
   })
 );
 
+
+/**
+ * POST Logout
+ */
+router.post('/logout', function (req, res, next) {
+  //
+  req.logOut(function (err) {
+    if(err){
+      return next(err);
+    }
+    else{
+      res.redirect('/login');
+    }
+  });
+})
+
 module.exports = router;
