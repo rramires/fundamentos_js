@@ -27,5 +27,15 @@ function resetPassword(email, callback) {
 }
 
 
+/**
+ * Get all users
+ */
+function findAllUsers(callback) {
+    //
+    global.db.collection("users").find().toArray(callback);
+}
+
+
 module.exports = { createUser, 
-                   resetPassword }
+                   resetPassword,
+                   findAllUsers }

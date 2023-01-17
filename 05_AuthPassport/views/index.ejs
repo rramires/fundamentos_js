@@ -7,8 +7,33 @@
 </head>
 <body>
     <h1><%= title %></h1>
-    <form action="/logout" method="POST">
-        <input type="submit" value="Logout">
-    </form>
+    <h3>Welcome <%= user %>!</h3>
+    <!-- Users table -->
+    <table>
+        <tr style="background-color: gray;">
+            <td>User</td><td>Actions</td>
+        </tr>
+        <% if(users){
+            for(let i = 0 ; i < users.length; i++){ %>
+                <tr>
+                    <td>
+                        <a href="/edit/<%= users[i]._id %>"><%= users[i].username%></a>
+                    </td>
+                    <td>
+                        <form action="/delete/<%= users[i]._id %>" method="POST">
+                            <input type="submit" value="X">
+                        </form>
+                    </td>
+                </tr>
+         <% }
+        } %> 
+    </table>
+    <p>
+        <a href="/users/signup">Cadastrar</a>
+        <!-- Logout Form -->
+        <form action="/logout" method="POST">
+            <input type="submit" value="Logout">
+        </form>
+    </p>
 </body>
 </html>

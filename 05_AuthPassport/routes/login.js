@@ -42,7 +42,7 @@ router.post('/login',
  * POST Logout
  */
 router.post('/logout', function (req, res, next) {
-  //
+  // logout
   req.logOut(function (err) {
     if(err){
       return next(err);
