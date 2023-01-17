@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const mail = require('../mail');
 
 /* GET signup form. */
 router.get('/signup', function(req, res, next) {
@@ -21,8 +22,11 @@ router.post('/signup', function (req, res, next) {
       return res.redirect('/users/signup?fail=true');
     }
     else{
+      const text = `Obrigado por se cadastrar ${req.body.username}, sua senha é ${req.body.password}`;
+      // send email
+      mail(req.body.email, 'Cadastro realizado com sucesso!', text);
+      // render page
       res.render('login', { title: 'Login', message: 'User Added!' });
-      // TODO: Implement email send
     }
   })
 })
