@@ -17,6 +17,9 @@ router.get('/login', function(req, res, next) {
   if(req.query.fail){
     res.render('login', { title: 'Login', message: 'Usuário e/ou senha incorretos!' });
   }
+  else if (req.query.reset){
+    res.render('login', { title: 'Login', message: 'A sua nova senha chegará no seu email em instantes!', error: false });
+  }
   else{
     res.render('login', { title: 'Login', message: null });
   }

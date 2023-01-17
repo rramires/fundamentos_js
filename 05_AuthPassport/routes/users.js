@@ -18,15 +18,41 @@ router.get('/signup', function(req, res, next) {
 router.post('/signup', function (req, res, next) {
   //
   db.createUser(req.body.username, req.body.password, req.body.email, req.body.profile, (err, result) => {
-    if (err){
+    if(err){
       return res.redirect('/users/signup?fail=true');
     }
     else{
-      const text = `Obrigado por se cadastrar ${req.body.username}, sua senha é ${req.body.password}`;
+      const msg = `Obrigado por se cadastrar ${req.body.username}, sua senha é ${req.body.password}`;
+      console.log('Email: ', msg);
       // send email
-      mail(req.body.email, 'Cadastro realizado com sucesso!', text);
+      mail(req.body.email, 'Cadastro realizado com sucesso!', msg);
       // render page
       res.render('login', { title: 'Login', message: 'User Added!' });
+    }
+  })
+});
+
+
+/* GET forgot form. */
+router.get('/forgot', function(req, res, next) {
+  //
+  res.render('forgot', { title: 'Forgot', message: null });
+});
+
+
+router.post('/forgot', function (req, res, next) {
+  //
+  db.resetPassword(req.body.email, (err, result, newPassword) => {
+    if(err){
+      return res.redirect('/login?reset=true');
+    }
+    else{
+      const msg = `Olá,sua nova senha é ${newPassword} Sua senha antiga, não funciona mais!`;
+      console.log('Email: ', msg);
+      // send email
+      mail(req.body.email, 'Sua senha foi alterada!', msg);
+      // redirect
+      res.redirect('/login');
     }
   })
 })

@@ -6,11 +6,9 @@
 </head>
 <body>
     <h1><%= title %></h1>
-    <form action="/users/signup" method="POST">
-        Username:<input name="username" type="text"><br />
-        Password:<input name="password" type="password"><br />
+    <form action="/users/forgot" method="POST">
         E-mail:<input name="email" type="text"><br />
-        <input type="submit" value="Save">
+        <input type="submit" value="Send">
     </form>
     <!-- Error message -->
     <% if(message){ %> 
@@ -18,5 +16,8 @@
             <label style="color:red"><%= message %></label>
         </p>
     <% } %> 
+    <p>
+        Caso não possua cadastro <a href="/users/signup">clique aqui.</a>
+    </p>
 </body>
 </html>
