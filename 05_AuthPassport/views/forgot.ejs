@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
-    <h1><%= title %></h1>
+<!-- Top -->
+<%- include("./partials/top.ejs") %>
+    <!-- body content -->
     <form action="/users/forgot" method="POST">
         E-mail:<input name="email" type="text"><br />
         <input type="submit" value="Send">
@@ -20,5 +14,5 @@
     <p>
         Caso não possua cadastro <a href="/users/signup">clique aqui.</a>
     </p>
-</body>
-</html>
+    <!-- botton -->
+<%- include("./partials/bottom.ejs") %>

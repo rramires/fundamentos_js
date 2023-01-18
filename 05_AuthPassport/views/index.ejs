@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
-    <h1><%= title %></h1>
+<!-- Top -->
+<%- include("./partials/top.ejs") %>
+    <!-- body content -->
     <h3>Welcome <%= user %>!</h3>
     <!-- Users table -->
     <table>
@@ -57,5 +51,5 @@
             <a href="/reports">Reports</a>
         <% } %>
     </p>
-</body>
-</html>
+    <!-- botton -->
+<%- include("./partials/bottom.ejs") %>

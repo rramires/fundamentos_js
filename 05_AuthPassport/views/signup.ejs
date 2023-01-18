@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
-    <h1><%= title %></h1>
+<!-- Top -->
+<%- include("./partials/top.ejs") %>
+    <!-- body content -->
     <form action="/users/signup" method="POST">
         Username:<input name="username" type="text"><br />
         Password:<input name="password" type="password"><br />
@@ -23,5 +17,5 @@
             <label style="color:red"><%= message %></label>
         </p>
     <% } %> 
-</body>
-</html>
+    <!-- botton -->
+<%- include("./partials/bottom.ejs") %>
