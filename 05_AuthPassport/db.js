@@ -1,6 +1,9 @@
 const bcrypt = require('bcryptjs');
 const utils = require('./utils.js');
 
+// number of users pagination
+const PAGE_SIZE = 5;
+
 /**
  * Add new user
  */
@@ -30,12 +33,24 @@ function resetPassword(email, callback) {
 /**
  * Get all users
  */
-function findAllUsers(callback) {
+function findAllUsers(page, callback) {
     //
-    global.db.collection("users").find().toArray(callback);
+    const totalSkip = (page - 1) * PAGE_SIZE;
+    //
+    global.db.collection("users").find().skip(totalSkip).limit(PAGE_SIZE).toArray(callback);
+}
+
+
+/**
+ * Get total users
+ */
+function countAll(callback) {
+    global.db.collection("users").countDocuments(callback);
 }
 
 
 module.exports = { createUser, 
                    resetPassword,
-                   findAllUsers }
+                   findAllUsers,
+                   countAll,
+                   PAGE_SIZE }

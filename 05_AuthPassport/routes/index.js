@@ -6,9 +6,13 @@ const authMiddleware = require('../authMiddleware');
 
 
 /* GET home page. */
-router.get('/', authMiddleware, function(req, res, next) {
+// page? = optional param
+router.get('/:page?', authMiddleware, function(req, res, next) {
+  //
+  const page = parseInt(req.params.page || "1");
+  console.log('page: ', page)
   // find users
-  db.findAllUsers((err, users) => {
+  db.findAllUsers(page, (err, users) => {
     if(err){
       throw new Error(err);
     }
