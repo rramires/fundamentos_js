@@ -23,7 +23,6 @@ router.get('/:page?', authMiddleware, function(req, res, next) {
         throw new Error(err);
       }
       else{
-        console.log('qtyPages: ', qtyPages);
         res.render('index', { title: 'Private Área', user: req.user.username, users, total, qtyPages, page, pageSize: db.PAGE_SIZE});
       }
     });
