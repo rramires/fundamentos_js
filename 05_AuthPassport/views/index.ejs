@@ -13,8 +13,8 @@
         <tr style="background-color: gray;">
             <td>User</td><td>Actions</td>
         </tr>
-        <% if(users){
-            for(let i = 0 ; i < users.length; i++){ %>
+        <% if(users){ %>
+            <% for(let i = 0 ; i < users.length; i++){ %>
                 <tr>
                     <td>
                         <a href="/edit/<%= users[i]._id %>"><%= users[i].username%></a>
@@ -25,9 +25,26 @@
                         </form>
                     </td>
                 </tr>
-         <% }
-        } %> 
+            <% } %> 
+        <% } %> 
+        <tr>
+            <td colspan="2">
+                <% for(let i = 1 ; i <= qtyPages; i++){ %>
+                    <% if(page === i) { %>
+                        <%= i %> |
+                    <% } else { %>
+                        <a href="/index/<%= i %>"><%= i %></a> |
+                    <% } %>
+                <% } %>
+            </td>
+        </tr>
     </table>
+    <p>
+        Showing <%= (page * pageSize) - pageSize +1 %> 
+        to <%= (page * pageSize) > pageSize ? pageSize : (page * pageSize) %> of 
+        <%= total %> registered users
+    </p>
+    <!-- Footer -->
     <p>
         <a href="/users/signup">Cadastrar</a>
         <!-- Logout Form -->
