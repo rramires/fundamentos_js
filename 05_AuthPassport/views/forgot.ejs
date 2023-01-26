@@ -1,18 +1,24 @@
 <!-- Top -->
 <%- include("./partials/top.ejs") %>
     <!-- body content -->
-    <form action="/users/forgot" method="POST">
-        E-mail:<input name="email" type="text"><br />
-        <input type="submit" value="Send">
-    </form>
-    <!-- Error message -->
-    <% if(message){ %> 
+    <div class="col-sm-6">
+        <form action="/users/forgot" method="POST">
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input id="email" name="email" type="text" placeholder="Digite seu email..." class="form-control">
+            </div>
+            <input type="submit" value="Send" class="btn btn-primary">
+        </form>
+        <!-- Error message -->
+        <% if(message){ %> 
+            <p>
+                <label style="color:red"><%= message %></label>
+            </p>
+        <% } %> 
+        <hr />
         <p>
-            <label style="color:red"><%= message %></label>
+            Caso não possua cadastro <a href="/users/signup">clique aqui.</a>
         </p>
-    <% } %> 
-    <p>
-        Caso não possua cadastro <a href="/users/signup">clique aqui.</a>
-    </p>
+    </div>
     <!-- botton -->
 <%- include("./partials/bottom.ejs") %>

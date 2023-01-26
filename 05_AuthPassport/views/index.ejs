@@ -15,7 +15,7 @@
                     </td>
                     <td>
                         <form action="users/delete/<%= users[i]._id %>" method="POST">
-                            <input type="submit" value="X">
+                            <input type="submit" value="X" class="btn btn-danger">
                         </form>
                     </td>
                 </tr>
@@ -40,15 +40,15 @@
     </p>
     <!-- Footer -->
     <p>
-        <a href="/users/signup">Cadastrar</a>
+        <a href="/users/signup" class="btn btn-primary">Cadastrar</a>
         <!-- Logout Form -->
-        <form action="/logout" method="POST">
+        <form action="/logout" method="POST" class="btn">
             <input type="submit" value="Logout">
         </form>
     </p>
     <p>
         <% if(profile === '1'){ %> 
-            <a href="/reports">Reports</a>
+            <a href="/reports" class="btn">Reports</a>
         <% } %>
     </p>
     <!-- botton -->
