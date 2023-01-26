@@ -20,9 +20,9 @@ module.exports = (request) => {
     // get URL
     let originalUrl = request.originalUrl;
     //
-    if (request.params.pagina)
+    if (request.params.page)
     {
-        originalUrl = originalUrl.replace("/" + request.params.pagina, "");
+        originalUrl = originalUrl.replace("/" + request.params.page, "");
     }
     //
     // get method for other validations
