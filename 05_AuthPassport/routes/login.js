@@ -6,7 +6,7 @@ const passport = require('passport');
  * GET home page. 
  */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Login', message: '' });
+  res.render('login', { title: 'Login', message: '', error: false });
 });
 
 
@@ -15,13 +15,13 @@ router.get('/', function(req, res, next) {
  */
 router.get('/login', function(req, res, next) {
   if(req.query.fail){
-    res.render('login', { title: 'Login', message: 'Usuário e/ou senha incorretos!' });
+    res.render('login', { title: 'Login', message: 'Usuário e/ou senha incorretos!', error: true });
   }
   else if (req.query.reset){
     res.render('login', { title: 'Login', message: 'A sua nova senha chegará no seu email em instantes!', error: false });
   }
   else{
-    res.render('login', { title: 'Login', message: null });
+    res.render('login', { title: 'Login', message: null, error: false });
   }
 });
 

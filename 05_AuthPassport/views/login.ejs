@@ -13,12 +13,19 @@
             </div>
             <input type="submit" value="Login" class="btn btn-primary">
         </form>
+        <hr />
         <!-- Error message -->
-        <% if(message){ %> 
+        <% if(message) { %>
             <p>
-                <label style="color:red"><%= message %></label>
+                <% if(error) { %>
+                  <div class="alert alert-danger">
+                <%} else {%>
+                  <div class="alert alert-success">
+                <%}%>
+                  <%= message %>
+                </div>
             </p>
-        <% } %> 
+          <%}%> 
         <p>
             <a href="/users/forgot">Esqueceu a sua senha?</a> | <a href="/users/signup">Não possui cadastro?</a>
         </p>

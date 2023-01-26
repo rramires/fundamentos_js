@@ -3,53 +3,70 @@
     <!-- body content -->
     <h3>Welcome <%= user %>!</h3>
     <!-- Users table -->
-    <table>
-        <tr style="background-color: gray;">
-            <td>User</td><td>Actions</td>
-        </tr>
-        <% if(users){ %>
-            <% for(let i = 0 ; i < users.length; i++){ %>
-                <tr>
-                    <td>
-                        <a href="users/edit/<%= users[i]._id %>"><%= users[i].username%></a>
-                    </td>
-                    <td>
-                        <form action="users/delete/<%= users[i]._id %>" method="POST">
-                            <input type="submit" value="X" class="btn btn-danger">
-                        </form>
-                    </td>
-                </tr>
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>User</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(users){ %>
+                <% for(let i = 0 ; i < users.length; i++){ %>
+                    <tr>
+                        <td>
+                            <a href="users/edit/<%= users[i]._id %>"><%= users[i].username%></a>
+                        </td>
+                        <td>
+                            <form action="users/delete/<%= users[i]._id %>" method="POST">
+                                <input type="submit" value="X" class="btn btn-danger">
+                            </form>
+                        </td>
+                    </tr>
+                <% } %> 
             <% } %> 
-        <% } %> 
-        <tr>
-            <td colspan="2">
-                <% for(let i = 1 ; i <= qtyPages; i++){ %>
-                    <% if(page === i) { %>
-                        <%= i %> |
-                    <% } else { %>
-                        <a href="/index/<%= i %>"><%= i %></a> |
-                    <% } %>
-                <% } %>
-            </td>
-        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    Showing <%= (page * pageSize) - pageSize +1 %> 
+                    to <%= (page * pageSize) > pageSize ? pageSize : (page * pageSize) %> of 
+                    <%= total %> registered users
+                </td>
+            </tr>
+        </tfoot>
     </table>
-    <p>
-        Showing <%= (page * pageSize) - pageSize +1 %> 
-        to <%= (page * pageSize) > pageSize ? pageSize : (page * pageSize) %> of 
-        <%= total %> registered users
-    </p>
+    <nav>
+        <ul class="pagination">
+            <% for(let i = 1 ; i <= qtyPages; i++){ %>
+                <!-- test currrent page -->
+                <% if(page === i) { %>
+                    <li class="disabled"></li>
+                        <a class="page-link"><%= i %></a>
+                    </li>
+                <% } else { %>
+                    <li class="page-item"></li>
+                        <a href="/index/<%= i %>" class="page-link"><%= i %></a>
+                    </li>
+                <% } %>
+            <% } %>
+        </ul>
+    </nav>
     <!-- Footer -->
-    <p>
-        <a href="/users/signup" class="btn btn-primary">Cadastrar</a>
-        <!-- Logout Form -->
-        <form action="/logout" method="POST" class="btn">
-            <input type="submit" value="Logout">
-        </form>
-    </p>
-    <p>
-        <% if(profile === '1'){ %> 
-            <a href="/reports" class="btn">Reports</a>
-        <% } %>
-    </p>
+    <div class="row">
+        <div class="col-sm-2">
+            <a href="/users/signup" class="btn btn-primary">Cadastrar</a>
+        </div>
+        <div class="col-sm-2">
+            <!-- Logout Form -->
+            <form action="/logout" method="POST">
+                <input type="submit" value="Logout" class="btn btn-light">
+            </form>
+        </div>
+        <div class="col-sm-2">
+            <% if(profile === '1'){ %> 
+                <a href="/reports" class="btn btn-light">Reports</a>
+            <% } %>
+        </div>
+    </div>
     <!-- botton -->
 <%- include("./partials/bottom.ejs") %>

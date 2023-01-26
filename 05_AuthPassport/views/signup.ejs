@@ -27,9 +27,9 @@
         </form>
         <!-- Error message -->
         <% if(message){ %> 
-            <p>
-                <label style="color:red"><%= message %></label>
-            </p>
+            <div class="alert alert-danger">
+                <%= message %>
+            </div>
         <% } %> 
     </div>
     <!-- botton -->
