@@ -26,8 +26,8 @@ router.post('/signup', function (req, res, next) {
       console.log('Email: ', msg);
       // send email
       mail(req.body.email, 'Cadastro realizado com sucesso!', msg);
-      // render page
-      res.render('login', { title: 'Login', message: 'User Added!', error: false });
+      // redirect page
+      res.redirect('/index');
     }
   })
 });
