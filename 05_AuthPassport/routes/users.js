@@ -55,7 +55,22 @@ router.post('/forgot', function (req, res, next) {
       res.redirect('/login');
     }
   })
-})
+});
 
+
+/* GET edit user */
+router.get('/edit/:idUser?', function (req, res, next) {
+  // TODO: Implement edit user
+  // 501 Not Implemented
+  res.sendStatus(501);
+});
+
+
+/* POST delete user */
+router.post('/delete/:idUser?', function (req, res, next) {
+  // TODO: Implement delete user
+  // 501 Not Implemented
+  res.sendStatus(501);
+});
 
 module.exports = router;

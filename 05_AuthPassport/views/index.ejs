@@ -11,10 +11,10 @@
             <% for(let i = 0 ; i < users.length; i++){ %>
                 <tr>
                     <td>
-                        <a href="/edit/<%= users[i]._id %>"><%= users[i].username%></a>
+                        <a href="users/edit/<%= users[i]._id %>"><%= users[i].username%></a>
                     </td>
                     <td>
-                        <form action="/delete/<%= users[i]._id %>" method="POST">
+                        <form action="users/delete/<%= users[i]._id %>" method="POST">
                             <input type="submit" value="X">
                         </form>
                     </td>
